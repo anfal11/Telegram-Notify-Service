@@ -86,7 +86,7 @@
 <body>
 <header>
   <h1>🔔 Zain Notify Service</h1>
-  <div class="status"><span class="dot"></span> live — port 7666</div>
+  <div class="status"><span class="dot"></span> live — port 6666</div>
 </header>
 <main>
   <div class="toolbar">
@@ -103,7 +103,7 @@ async function loadEvents() {
   const content = document.getElementById('content');
   content.innerHTML = '<div class="empty">Loading...</div>';
   try {
-    const res = await fetch('/api/events?limit=100');
+    const res = await fetch('api/events?limit=100');
     const events = await res.json();
     if (!events.length) {
       content.innerHTML = '<div class="empty">No events received yet. Waiting for calls from Zain server...</div>';
@@ -128,7 +128,7 @@ async function loadEvents() {
 }
 
 async function testTelegram() {
-  const res = await fetch('/api/test-telegram', { method: 'POST' });
+  const res = await fetch('api/test-telegram', { method: 'POST' });
   const data = await res.json();
   alert(data.sent ? 'Test notification sent to Telegram!' : 'Failed — check TELEGRAM_BOT_TOKEN / CHAT_ID in .env');
 }
